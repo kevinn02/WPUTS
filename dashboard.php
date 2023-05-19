@@ -97,7 +97,7 @@
                             <td class="px-5 font-normal text-sm font-poppins tracking-wide text-zinc-600"><?php echo $data_tabel[$i]['tanggal_lahir'] ?></td>
                             <td>
                                 <div class="px-5 py-2 w-full flex gap-2">
-                                    <div class="px-4 py-2 bg-blue-600 rounded-md flex justify-center"><a href="update.php" class="font-semibold text-sm font-poppins tracking-wider text-zinc-50">Update</a></div>
+                                    <div class="px-4 py-2 bg-blue-600 rounded-md flex justify-center"><a href="update.php?id=<?= $data_tabel[$i]['nim']; ?>" class="font-semibold text-sm font-poppins tracking-wider text-zinc-50">Update</a></div>
                                     <div class="px-4 py-2 bg-red-600 rounded-md flex justify-center"><a href="#" class="font-semibold text-sm font-poppins tracking-wider text-zinc-50">Delete</a></div>
                                 </div>
                             </td>
