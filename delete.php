@@ -1,4 +1,6 @@
 <?php
+    // mulai session
+    session_start();
     require_once('koneksi.php');
 
     // Delete Data
@@ -13,8 +15,11 @@
         $query = "DELETE FROM data_mahasiswa WHERE nim = '$id'";
 
             if(mysqli_query($mysqli, $query)) {
-            echo "<div></div>";
-            echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js'></script><link href='https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css' rel='stylesheet'><script>Swal.fire('Data Di Hapus!','Data Berhasil Di Hapus!','info')</script>";
+                // atur session hapus
+                $_SESSION['alert'] = 'hapus';
+ 
+                header("Location: dashboard.php");
+                exit;
             }
             else{
             echo "Error deleting record: " . mysqli_error($conn);

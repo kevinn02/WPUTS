@@ -1,6 +1,12 @@
 <?php
     require_once('koneksi.php');
 
+    // eksekusi session alert hapus
+    if(isset($_SESSION['alert']) && $_SESSION['alert'] == 'hapus') {
+        echo "<div></div>";
+        echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js'></script><link href='https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css' rel='stylesheet'><script>Swal.fire('Data Di Hapus!','Data Berhasil Di Hapus!','info')</script>";    
+    }
+
     // Read Data
     function read_data()
     {
@@ -131,3 +137,8 @@
     </footer>
 </body>
 </html>
+
+<?php 
+    // set kosong session alert
+    $_SESSION['alert'] = ' '; 
+?>
