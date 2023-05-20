@@ -11,7 +11,7 @@
         $tanggal_lahir = $_POST['tanggal_lahir'];
 
         //Menambah Data Baru
-        $sql = "INSERT INTO data_mahasiswa(
+        $query = "INSERT INTO data_mahasiswa(
                 nim, 
                 nama, 
                 jurusan, 
@@ -28,11 +28,15 @@
                 '$tanggal_lahir'
                 )";
 
-        if(mysqli_query($mysqli, $sql)){
-            // Allert
-            echo "<div></div>";
-            echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js'></script><link href='https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css' rel='stylesheet'><script>Swal.fire('Berhasil!','Data Mahasiswa Berhasil Di Tambahkan!','success')</script>";
-        }
+                if(mysqli_query($mysqli, $query)) {
+                    $_SESSION['alert'] = 'tambah';
+
+                    header("Location: dashboard.php");
+                    exit;
+                }
+                else{
+                echo "Error create data record: " . mysqli_error($conn);
+                }
 
         mysqli_close($mysqli);
     }
@@ -131,8 +135,8 @@
                     </tr>
                 </table>
                 <div class="w-full mt-4 flex gap-3 justify-center">
-                    <button type="submit" class="py-2 px-5 bg-green-600 rounded-md shadow-sm font-semibold text-sm font-poppins tracking-wider text-zinc-50">Submit</button>
-                    <button type="reset" class="py-2 px-5 bg-zinc-600 rounded-md shadow-sm font-semibold text-sm font-poppins tracking-wider text-zinc-50">Batal</button>
+                    <button type="submit" class="py-2 px-5 bg-green-600 rounded-md shadow-sm font-semibold text-sm font-poppins tracking-wider text-zinc-50 hover:bg-green-700 duration-150">Submit</button>
+                    <a href="dashboard.php" class="py-2 px-5 bg-zinc-600 rounded-md shadow-sm font-semibold text-sm font-poppins tracking-wider text-zinc-50 hover:bg-zinc-700 duration-150">Batal</a>
                 </div>
             </form>
         </div>

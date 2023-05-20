@@ -1,10 +1,20 @@
 <?php
     require_once('koneksi.php');
 
-    // eksekusi session alert hapus
+    // Allert
     if(isset($_SESSION['alert']) && $_SESSION['alert'] == 'hapus') {
         echo "<div></div>";
-        echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js'></script><link href='https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css' rel='stylesheet'><script>Swal.fire('Data Di Hapus!','Data Berhasil Di Hapus!','info')</script>";    
+        echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js'></script><link href='https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css' rel='stylesheet'><script>Swal.fire('Delete!','Data Berhasil Di Delete!','info')</script>";    
+    }
+
+    if(isset($_SESSION['alert']) && $_SESSION['alert'] == 'update') {
+        echo "<div></div>";
+        echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js'></script><link href='https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css' rel='stylesheet'><script>Swal.fire('Update!','Data Berhasil Di Update!','success')</script>";
+    }
+
+    if(isset($_SESSION['alert']) && $_SESSION['alert'] == 'tambah') {
+        echo "<div></div>";
+        echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js'></script><link href='https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css' rel='stylesheet'><script>Swal.fire('Tambah Data!','Data Mahasiswa Berhasil Di Tambahkan!','success')</script>";
     }
 
     // Read Data
@@ -27,19 +37,6 @@
     }
 
     $data_tabel = read_data();
-
-    // Delete Data
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $nim = $_POST['nim'];
-        $query = "DELETE FROM tb_mahasiswa WHERE nim = '$nim'";
-        if (mysqli_query($mysqli, $query)) {
-            // Memunculkan Allert
-            echo "<div></div>";
-            echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js'></script><link href='https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css' rel='stylesheet'><script>Swal.fire('Data Di Hapus!','Data Berhasil Di Hapus!','info')</script>";
-        } else {
-            echo "Error deleting record: " . mysqli_error($conn);
-        }
-    }
 ?>
 
 <!-- Main Dashboard -->
@@ -86,7 +83,7 @@
                         <th class="border-b-2 border-zinc-700 px-5 py-4 font-semibold text-base font-poppins tracking-wide text-zinc-600">Gender</th>
                         <th class="border-b-2 border-zinc-700 px-5 py-4 font-semibold text-base font-poppins tracking-wide text-zinc-600">Tanggal Lahir</th>
                         <th class="border-b-2 border-zinc-700 px-5">
-                            <div class="px-4 py-2 bg-green-600 rounded-md flex justify-center"><a href="tambah.php" class="font-semibold text-base font-poppins tracking-wider text-zinc-50">Tambah</a></div>
+                            <div class="px-4 py-2 bg-green-600 rounded-md flex justify-center cursor-pointer shadow-sm hover:bg-green-700 duration-150"><a href="tambah.php" class="font-semibold text-base font-poppins tracking-wider text-zinc-50">Tambah</a></div>
                         </th>
                     </tr>
                 </thead>
@@ -103,8 +100,8 @@
                             <td class="px-5 font-normal text-sm font-poppins tracking-wide text-zinc-600"><?php echo $data_tabel[$i]['tanggal_lahir'] ?></td>
                             <td>
                                 <div class="px-5 py-2 w-full flex gap-2">
-                                    <div class="px-4 py-2 bg-blue-600 rounded-md flex justify-center"><a href="update.php?id=<?= $data_tabel[$i]['nim']; ?>" class="font-semibold text-sm font-poppins tracking-wider text-zinc-50">Update</a></div>
-                                    <div class="px-4 py-2 bg-red-600 rounded-md flex justify-center"><a href="delete.php?id=<?= $data_tabel[$i]['nim']; ?>" class="font-semibold text-sm font-poppins tracking-wider text-zinc-50">Delete</a></div>
+                                    <div class="px-4 py-2 bg-blue-600 rounded-md flex justify-center cursor-pointer hover:bg-blue-700 duration-150 shadow-sm"><a href="update.php?id=<?= $data_tabel[$i]['nim']; ?>" class="font-semibold text-sm font-poppins tracking-wider text-zinc-50">Update</a></div>
+                                    <div class="px-4 py-2 bg-red-600 rounded-md flex justify-center cursor-pointer hover:bg-red-700 duration-150 shadow-sm"><a href="delete.php?id=<?= $data_tabel[$i]['nim']; ?>" class="font-semibold text-sm font-poppins tracking-wider text-zinc-50">Delete</a></div>
                                 </div>
                             </td>
                         </tr>
@@ -139,6 +136,5 @@
 </html>
 
 <?php 
-    // set kosong session alert
     $_SESSION['alert'] = ' '; 
 ?>

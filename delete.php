@@ -1,6 +1,4 @@
 <?php
-    // mulai session
-    session_start();
     require_once('koneksi.php');
 
     // Delete Data
@@ -15,7 +13,6 @@
         $query = "DELETE FROM data_mahasiswa WHERE nim = '$id'";
 
             if(mysqli_query($mysqli, $query)) {
-                // atur session hapus
                 $_SESSION['alert'] = 'hapus';
  
                 header("Location: dashboard.php");
@@ -136,8 +133,8 @@
                     </tr>
                 </table>
                 <div class="w-full mt-4 flex gap-3 justify-center">
-                    <button type="submit" class="py-2 px-5 bg-red-600 rounded-md shadow-sm font-semibold text-sm font-poppins tracking-wider text-zinc-50">Delete</button>
-                    <button type="reset" class="py-2 px-5 bg-zinc-600 rounded-md shadow-sm font-semibold text-sm font-poppins tracking-wider text-zinc-50">Batal</button>
+                    <button type="submit" class="py-2 px-5 bg-red-600 rounded-md shadow-sm font-semibold text-sm font-poppins tracking-wider text-zinc-50 hover:bg-red-700 duration-150">Delete</button>
+                    <a href="dashboard.php" class="py-2 px-5 bg-zinc-600 rounded-md shadow-sm font-semibold text-sm font-poppins tracking-wider text-zinc-50 hover:bg-zinc-700 duration-150">Batal</a>
                 </div>
             </form>
         </div>

@@ -19,16 +19,15 @@
             tanggal_lahir='$tanggal_lahir'
             WHERE nim='$id'";
 
-        $result = mysqli_query($mysqli, $query);
+            if(mysqli_query($mysqli, $query)) {
+                $_SESSION['alert'] = 'update';
 
-        if($result) {
-            // Allert
-            echo "<div></div>";
-            echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js'></script><link href='https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css' rel='stylesheet'><script>Swal.fire('Berhasil!','Data Berhasil Di Update!','success')</script>";
-        }
-        else{
-            echo "Data Gagal Di Update!";
-        }
+                header("Location: dashboard.php");
+                exit;
+            }
+            else{
+            echo "Error update record: " . mysqli_error($conn);
+            }
     }
 
     // Sisteam Read Data
@@ -142,8 +141,8 @@
                     </tr>
                 </table>
                 <div class="w-full mt-4 flex gap-3 justify-center">
-                    <button type="submit" class="py-2 px-5 bg-blue-600 rounded-md shadow-sm font-semibold text-sm font-poppins tracking-wider text-zinc-50">Update</button>
-                    <button type="reset" class="py-2 px-5 bg-zinc-600 rounded-md shadow-sm font-semibold text-sm font-poppins tracking-wider text-zinc-50">Batal</button>
+                    <button type="submit" class="py-2 px-5 bg-blue-600 rounded-md shadow-sm font-semibold text-sm font-poppins tracking-wider text-zinc-50 hover:bg-blue-700 duration-150">Update</button>
+                    <a href="dashboard.php" class="py-2 px-5 bg-zinc-600 rounded-md shadow-sm font-semibold text-sm font-poppins tracking-wider text-zinc-50 hover:bg-zinc-700 duration-150">Batal</a>
                 </div>
             </form>
         </div>
