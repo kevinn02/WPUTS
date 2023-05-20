@@ -1,7 +1,7 @@
 <?php
     require_once('koneksi.php');
 
-    // Update Data
+    // Delete Data
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
         $id = $_POST['nim'];
         $nama = $_POST['nama'];
@@ -10,28 +10,18 @@
         $jurusan = $_POST['jurusan'];
         $tanggal_lahir = $_POST['tanggal_lahir'];
 
-        // Update Data di Database
-        $query = "UPDATE data_mahasiswa SET 
-            nama='$nama', 
-            jurusan='$jurusan', 
-            prodi='$prodi', 
-            gender='$gender', 
-            tanggal_lahir='$tanggal_lahir'
-            WHERE nim='$id'";
+        $query = "DELETE FROM data_mahasiswa WHERE nim = '$id'";
 
-        $result = mysqli_query($mysqli, $query);
-
-        if($result) {
-            // Allert
+            if(mysqli_query($mysqli, $query)) {
             echo "<div></div>";
-            echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js'></script><link href='https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css' rel='stylesheet'><script>Swal.fire('Berhasil!','Data Berhasil Di Update!','success')</script>";
-        }
-        else{
-            echo "Data Gagal Di Update!";
-        }
+            echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js'></script><link href='https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css' rel='stylesheet'><script>Swal.fire('Data Di Hapus!','Data Berhasil Di Hapus!','info')</script>";
+            }
+            else{
+            echo "Error deleting record: " . mysqli_error($conn);
+            }
     }
 
-    // Sisteam Read Data
+    // // Sisteam Read Data
     $nim = mysqli_real_escape_string($mysqli, $_GET['id']);
     $sql = "SELECT * FROM data_mahasiswa WHERE nim = '$nim'";
 
@@ -48,8 +38,7 @@
 
     mysqli_close($mysqli);
 ?>
-
-<!-- Main Update -->
+<!-- Main Delete -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -84,25 +73,25 @@
     <main class="w-full flex justify-center py-14">
         <div class="w-[750px] h-auto bg-zinc-50 shadow-sm rounded-md p-7">
             <div class="w-full text-center mb-4">
-                <h3 class="font-semibold text-2xl font-poppins tracking-wide text-zinc-600">Update Data Mahasiswa</h3>
+                <h3 class="font-semibold text-2xl font-poppins tracking-wide text-zinc-600">Delete Data Mahasiswa</h3>
             </div>
-            <form  class="w-full" action="update.php?id=<?= $data['nim']; ?>" method="POST">
+            <form  class="w-full" action="delete.php?id=<?= $data['nim']; ?>" method="POST">
                 <table class="w-full">
                     <tr>
                         <td class="w-[140px] py-2"><label class="font-normal text-base font-poppins tracking-wider text-zinc-900" for="nim">NIM</label></td>
                         <td class="py-2">:</td>
-                        <td class="py-2"><input required readonly type="number" id="nim" name="nim" value="<?= $data['nim'] ?>" class="rounded-md shadow-sm w-full outline-none px-2 py-1 font-normal text-base font-poppins tracking-wide text-zinc-700"></td>
+                        <td class="py-2"><input readonly type="number" id="nim" name="nim" value="<?= $data['nim'] ?>" class="rounded-md shadow-sm w-full outline-none px-2 py-1 font-normal text-base font-poppins tracking-wide text-zinc-700"></td>
                     </tr>
                     <tr>
                         <td class="w-[140px] py-2"><label class="font-normal text-base font-poppins tracking-wider text-zinc-900" for="nama">Nama</label></td>
                         <td class="py-2">:</td>
-                        <td class="py-2"><input required type="text" id="nama" name="nama" value="<?= $data['nama'] ?>" class="rounded-md shadow-sm w-full outline-none px-2 py-1 font-normal text-base font-poppins tracking-wide text-zinc-700"></td>
+                        <td class="py-2"><input readonly type="text" id="nama" name="nama" value="<?= $data['nama'] ?>" class="rounded-md shadow-sm w-full outline-none px-2 py-1 font-normal text-base font-poppins tracking-wide text-zinc-700"></td>
                     </tr>
                     <tr>
                         <td class="w-[140px] py-2"><label class="font-normal text-base font-poppins tracking-wider text-zinc-900" for="jurusan">Jurusan</label></td>
                         <td class="py-2">:</td>
                         <td class="py-2">
-                            <select required id="jurusan" name="jurusan" class="rounded-md shadow-sm w-full outline-none px-2 py-1 font-normal text-base font-poppins tracking-wide text-zinc-700">
+                            <select disabled id="jurusan" name="jurusan" class="rounded-md shadow-sm w-full outline-none px-2 py-1 font-normal text-base font-poppins tracking-wide text-zinc-700">
                                 <option selected disabled hidden></option>
                                 <option value="TI-MTI" <?php if ($data['jurusan'] == 'TI-MTI') { echo 'selected'; } ?>>TI-MTI</option>
                                 <option value="TI-KAB" <?php if ($data['jurusan'] == 'TI-KAB') { echo 'selected'; } ?>>TI-KAB</option>
@@ -116,7 +105,7 @@
                         <td class="w-[140px] py-2"><label class="font-normal text-base font-poppins tracking-wider text-zinc-900" for="prodi">Prodi</label></td>
                         <td class="py-2">:</td>
                         <td class="py-2">
-                            <select required id="prodi" name="prodi" class="rounded-md shadow-sm w-full outline-none px-2 py-1 font-normal text-base font-poppins tracking-wide text-zinc-700">
+                            <select disabled id="prodi" name="prodi" class="rounded-md shadow-sm w-full outline-none px-2 py-1 font-normal text-base font-poppins tracking-wide text-zinc-700">
                                 <option selected disabled hidden></option>
                                 <option value="TI" <?php if ($data['prodi'] == 'TI') { echo 'selected'; } ?>>TI</option>
                                 <option value="SK" <?php if ($data['prodi'] == 'SK') { echo 'selected'; } ?>>SK</option>
@@ -128,7 +117,7 @@
                         <td class="w-[140px] py-2"><label class="font-normal text-base font-poppins tracking-wider text-zinc-900" for="gender">Gender</label></td>
                         <td class="py-2">:</td>
                         <td class="py-2">
-                            <select required id="gender" name="gender" class="rounded-md shadow-sm w-full outline-none px-2 py-1 font-normal text-base font-poppins tracking-wide text-zinc-700">
+                            <select disabled id="gender" name="gender" class="rounded-md shadow-sm w-full outline-none px-2 py-1 font-normal text-base font-poppins tracking-wide text-zinc-700">
                                 <option selected disabled hidden></option>
                                 <option value="Laki-Laki" <?php if ($data['gender'] == 'Laki-Laki') { echo 'selected'; } ?>>Laki-Laki</option>
                                 <option value="Perempuan" <?php if ($data['gender'] == 'Perempuan') { echo 'selected'; } ?>>Perempuan</option>
@@ -138,11 +127,11 @@
                     <tr>
                         <td class="w-[140px] py-2"><label class="font-normal text-base font-poppins tracking-wider text-zinc-900" for="tanggal_lahir">Tanggal Lahir</label></td>
                         <td class="py-2">:</td>
-                        <td class="py-2"><input required type="date" id="tanggal_lahir" name="tanggal_lahir" value="<?= $data['tanggal_lahir']?>" class="rounded-md shadow-sm w-full outline-none px-2 py-1 font-normal text-base font-poppins tracking-wide text-zinc-700"></td>
+                        <td class="py-2"><input readonly type="date" id="tanggal_lahir" name="tanggal_lahir" value="<?= $data['tanggal_lahir']?>" class="rounded-md shadow-sm w-full outline-none px-2 py-1 font-normal text-base font-poppins tracking-wide text-zinc-700"></td>
                     </tr>
                 </table>
                 <div class="w-full mt-4 flex gap-3 justify-center">
-                    <button type="submit" class="py-2 px-5 bg-blue-600 rounded-md shadow-sm font-semibold text-sm font-poppins tracking-wider text-zinc-50">Update</button>
+                    <button type="submit" class="py-2 px-5 bg-red-600 rounded-md shadow-sm font-semibold text-sm font-poppins tracking-wider text-zinc-50">Delete</button>
                     <button type="reset" class="py-2 px-5 bg-zinc-600 rounded-md shadow-sm font-semibold text-sm font-poppins tracking-wider text-zinc-50">Batal</button>
                 </div>
             </form>

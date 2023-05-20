@@ -105,7 +105,7 @@
                         <td class="w-[140px] py-2"><label class="font-normal text-base font-poppins tracking-wider text-zinc-900" for="prodi">Prodi</label></td>
                         <td class="py-2">:</td>
                         <td class="py-2">
-                            <select id="prodi" name="prodi" class="rounded-md shadow-sm w-full outline-none px-2 py-1 font-normal text-base font-poppins tracking-wide text-zinc-700">
+                            <select required id="prodi" name="prodi" class="rounded-md shadow-sm w-full outline-none px-2 py-1 font-normal text-base font-poppins tracking-wide text-zinc-700">
                                 <option selected disabled hidden></option>
                                 <option value="TI">TI</option>
                                 <option value="SK">SK</option>
@@ -117,7 +117,7 @@
                         <td class="w-[140px] py-2"><label class="font-normal text-base font-poppins tracking-wider text-zinc-900" for="gender">Gender</label></td>
                         <td class="py-2">:</td>
                         <td class="py-2">
-                            <select id="gender" name="gender" class="rounded-md shadow-sm w-full outline-none px-2 py-1 font-normal text-base font-poppins tracking-wide text-zinc-700">
+                            <select required id="gender" name="gender" class="rounded-md shadow-sm w-full outline-none px-2 py-1 font-normal text-base font-poppins tracking-wide text-zinc-700">
                                 <option selected disabled hidden></option>
                                 <option value="Laki-Laki">Laki-Laki</option>
                                 <option value="Perempuan">Perempuan</option>
@@ -130,8 +130,9 @@
                         <td class="py-2"><input required type="date" id="tanggal_lahir" name="tanggal_lahir" class="rounded-md shadow-sm w-full outline-none px-2 py-1 font-normal text-base font-poppins tracking-wide text-zinc-700"></td>
                     </tr>
                 </table>
-                <div class="w-full text-center mt-4">
+                <div class="w-full mt-4 flex gap-3 justify-center">
                     <button type="submit" class="py-2 px-5 bg-green-600 rounded-md shadow-sm font-semibold text-sm font-poppins tracking-wider text-zinc-50">Submit</button>
+                    <button type="reset" class="py-2 px-5 bg-zinc-600 rounded-md shadow-sm font-semibold text-sm font-poppins tracking-wider text-zinc-50">Batal</button>
                 </div>
             </form>
         </div>
