@@ -83,7 +83,7 @@
                     </div>
                 </nav>
             </header>
-            <main class="w-full flex justify-center py-14">
+            <main class="w-full flex justify-center py-10">
                 <div class="w-auto py-7 px-10 bg-color1 shadow-sm rounded-md flex justify-center">
                     <table class="table-fixed border-collapse">
                         <thead>
