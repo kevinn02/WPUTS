@@ -48,7 +48,6 @@
     mysqli_close($mysqli);
 ?>
 
-
 <!-- Main Update -->
 <!doctype html>
 <html lang="en">
@@ -84,81 +83,84 @@
     </script>
 </head>
 <body class="bg-zinc-100">
-    <header class="drop-shadow-shdw1">
-        <nav class="w-full py-5 bg-color5">
-            <div class="flex justify-center w-full">
-                <a href="#" class="font-bold text-xl font-poppins tracking-wide text-zinc-50">Dashboard Data Mahasiswa</a>
-            </div>
-        </nav>
-    </header>
-    <main class="w-full flex justify-center py-14">
-        <div class="w-[750px] h-auto bg-color1 shadow-sm rounded-md p-7">
-            <div class="w-full text-center mb-4">
-                <h3 class="font-semibold text-2xl font-poppins tracking-wide text-zinc-600">Update Data Mahasiswa</h3>
-            </div>
-            <form  class="w-full" action="update.php?id=<?= $data['nim']; ?>" method="POST">
-                <table class="w-full">
-                    <tr>
-                        <td class="w-[140px] py-2"><label class="font-normal text-base font-poppins tracking-wider text-zinc-900" for="nim">NIM</label></td>
-                        <td class="py-2">:</td>
-                        <td class="py-2"><input required readonly type="number" id="nim" name="nim" value="<?= $data['nim'] ?>" class="bg-zinc-50 rounded-md shadow-sm w-full outline-none px-2 py-1 font-normal text-base font-poppins tracking-wide text-zinc-700"></td>
-                    </tr>
-                    <tr>
-                        <td class="w-[140px] py-2"><label class="font-normal text-base font-poppins tracking-wider text-zinc-900" for="nama">Nama</label></td>
-                        <td class="py-2">:</td>
-                        <td class="py-2"><input required type="text" id="nama" name="nama" value="<?= $data['nama'] ?>" class="bg-zinc-50 rounded-md shadow-sm w-full outline-none px-2 py-1 font-normal text-base font-poppins tracking-wide text-zinc-700"></td>
-                    </tr>
-                    <tr>
-                        <td class="w-[140px] py-2"><label class="font-normal text-base font-poppins tracking-wider text-zinc-900" for="jurusan">Jurusan</label></td>
-                        <td class="py-2">:</td>
-                        <td class="py-2">
-                            <select required id="jurusan" name="jurusan" class="bg-zinc-50 rounded-md shadow-sm w-full outline-none px-2 py-1 font-normal text-base font-poppins tracking-wide text-zinc-700">
-                                <option selected disabled hidden></option>
-                                <option value="TI-MTI" <?php if ($data['jurusan'] == 'TI-MTI') { echo 'selected'; } ?>>TI-MTI</option>
-                                <option value="TI-KAB" <?php if ($data['jurusan'] == 'TI-KAB') { echo 'selected'; } ?>>TI-KAB</option>
-                                <option value="Sistem Komputer" <?php if ($data['jurusan'] == 'Sistem Komputer') { echo 'selected'; } ?>>Sistem Komputer</option>
-                                <option value="Bisnis Digital" <?php if ($data['jurusan'] == 'Bisnis Digital') { echo 'selected'; } ?>>Bisnis Digital</option>
-                                <option value="DKV" <?php if ($data['jurusan'] == 'DKV') { echo 'selected'; } ?>>DKV</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="w-[140px] py-2"><label class="font-normal text-base font-poppins tracking-wider text-zinc-900" for="prodi">Prodi</label></td>
-                        <td class="py-2">:</td>
-                        <td class="py-2">
-                            <select required id="prodi" name="prodi" class="bg-zinc-50 rounded-md shadow-sm w-full outline-none px-2 py-1 font-normal text-base font-poppins tracking-wide text-zinc-700">
-                                <option selected disabled hidden></option>
-                                <option value="TI" <?php if ($data['prodi'] == 'TI') { echo 'selected'; } ?>>TI</option>
-                                <option value="SK" <?php if ($data['prodi'] == 'SK') { echo 'selected'; } ?>>SK</option>
-                                <option value="DKV" <?php if ($data['prodi'] == 'DKV') { echo 'selected'; } ?>>DKV</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="w-[140px] py-2"><label class="font-normal text-base font-poppins tracking-wider text-zinc-900" for="gender">Gender</label></td>
-                        <td class="py-2">:</td>
-                        <td class="py-2">
-                            <select required id="gender" name="gender" class="bg-zinc-50 rounded-md shadow-sm w-full outline-none px-2 py-1 font-normal text-base font-poppins tracking-wide text-zinc-700">
-                                <option selected disabled hidden></option>
-                                <option value="Laki-Laki" <?php if ($data['gender'] == 'Laki-Laki') { echo 'selected'; } ?>>Laki-Laki</option>
-                                <option value="Perempuan" <?php if ($data['gender'] == 'Perempuan') { echo 'selected'; } ?>>Perempuan</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="w-[140px] py-2"><label class="font-normal text-base font-poppins tracking-wider text-zinc-900" for="tanggal_lahir">Tanggal Lahir</label></td>
-                        <td class="py-2">:</td>
-                        <td class="py-2"><input required type="date" id="tanggal_lahir" name="tanggal_lahir" value="<?= $data['tanggal_lahir']?>" class="bg-zinc-50 rounded-md shadow-sm w-full outline-none px-2 py-1 font-normal text-base font-poppins tracking-wide text-zinc-700"></td>
-                    </tr>
-                </table>
-                <div class="w-full mt-4 flex gap-3 justify-center">
-                    <button type="submit" class="py-2 px-5 bg-color4 rounded-md shadow-sm font-semibold text-sm font-poppins tracking-wider text-zinc-50 hover:bg-orange-600 duration-150">Update</button>
-                    <a href="dashboard.php" class="py-2 px-5 bg-zinc-600 rounded-md shadow-sm font-semibold text-sm font-poppins tracking-wider text-zinc-50 hover:bg-zinc-700 duration-150">Batal</a>
+    <div class="flex flex-col justify-between min-h-screen">
+        <div>
+            <header class="drop-shadow-shdw1">
+                <nav class="w-full py-5 bg-color5">
+                    <div class="flex justify-center w-full">
+                        <a href="#" class="font-bold text-xl font-poppins tracking-wide text-zinc-50">Dashboard Data Mahasiswa</a>
+                    </div>
+                </nav>
+            </header>
+            <main class="w-full flex justify-center py-14">
+                <div class="w-[750px] h-auto bg-color1 shadow-sm rounded-md p-7">
+                    <div class="w-full text-center mb-4">
+                        <h3 class="font-semibold text-2xl font-poppins tracking-wide text-zinc-600">Update Data Mahasiswa</h3>
+                    </div>
+                    <form  class="w-full" action="update.php?id=<?= $data['nim']; ?>" method="POST">
+                        <table class="w-full">
+                            <tr>
+                                <td class="w-[140px] py-2"><label class="font-normal text-base font-poppins tracking-wider text-zinc-900" for="nim">NIM</label></td>
+                                <td class="py-2">:</td>
+                                <td class="py-2"><input required readonly type="number" id="nim" name="nim" value="<?= $data['nim'] ?>" class="bg-zinc-50 rounded-md shadow-sm w-full outline-none px-2 py-1 font-normal text-base font-poppins tracking-wide text-zinc-700"></td>
+                            </tr>
+                            <tr>
+                                <td class="w-[140px] py-2"><label class="font-normal text-base font-poppins tracking-wider text-zinc-900" for="nama">Nama</label></td>
+                                <td class="py-2">:</td>
+                                <td class="py-2"><input required type="text" id="nama" name="nama" value="<?= $data['nama'] ?>" class="bg-zinc-50 rounded-md shadow-sm w-full outline-none px-2 py-1 font-normal text-base font-poppins tracking-wide text-zinc-700"></td>
+                            </tr>
+                            <tr>
+                                <td class="w-[140px] py-2"><label class="font-normal text-base font-poppins tracking-wider text-zinc-900" for="jurusan">Jurusan</label></td>
+                                <td class="py-2">:</td>
+                                <td class="py-2">
+                                    <select required id="jurusan" name="jurusan" class="bg-zinc-50 rounded-md shadow-sm w-full outline-none px-2 py-1 font-normal text-base font-poppins tracking-wide text-zinc-700">
+                                        <option selected disabled hidden></option>
+                                        <option value="TI-MTI" <?php if ($data['jurusan'] == 'TI-MTI') { echo 'selected'; } ?>>TI-MTI</option>
+                                        <option value="TI-KAB" <?php if ($data['jurusan'] == 'TI-KAB') { echo 'selected'; } ?>>TI-KAB</option>
+                                        <option value="Sistem Komputer" <?php if ($data['jurusan'] == 'Sistem Komputer') { echo 'selected'; } ?>>Sistem Komputer</option>
+                                        <option value="Bisnis Digital" <?php if ($data['jurusan'] == 'Bisnis Digital') { echo 'selected'; } ?>>Bisnis Digital</option>
+                                        <option value="DKV" <?php if ($data['jurusan'] == 'DKV') { echo 'selected'; } ?>>DKV</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="w-[140px] py-2"><label class="font-normal text-base font-poppins tracking-wider text-zinc-900" for="prodi">Prodi</label></td>
+                                <td class="py-2">:</td>
+                                <td class="py-2">
+                                    <select required id="prodi" name="prodi" class="bg-zinc-50 rounded-md shadow-sm w-full outline-none px-2 py-1 font-normal text-base font-poppins tracking-wide text-zinc-700">
+                                        <option selected disabled hidden></option>
+                                        <option value="TI" <?php if ($data['prodi'] == 'TI') { echo 'selected'; } ?>>TI</option>
+                                        <option value="SK" <?php if ($data['prodi'] == 'SK') { echo 'selected'; } ?>>SK</option>
+                                        <option value="DKV" <?php if ($data['prodi'] == 'DKV') { echo 'selected'; } ?>>DKV</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="w-[140px] py-2"><label class="font-normal text-base font-poppins tracking-wider text-zinc-900" for="gender">Gender</label></td>
+                                <td class="py-2">:</td>
+                                <td class="py-2">
+                                    <select required id="gender" name="gender" class="bg-zinc-50 rounded-md shadow-sm w-full outline-none px-2 py-1 font-normal text-base font-poppins tracking-wide text-zinc-700">
+                                        <option selected disabled hidden></option>
+                                        <option value="Laki-Laki" <?php if ($data['gender'] == 'Laki-Laki') { echo 'selected'; } ?>>Laki-Laki</option>
+                                        <option value="Perempuan" <?php if ($data['gender'] == 'Perempuan') { echo 'selected'; } ?>>Perempuan</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="w-[140px] py-2"><label class="font-normal text-base font-poppins tracking-wider text-zinc-900" for="tanggal_lahir">Tanggal Lahir</label></td>
+                                <td class="py-2">:</td>
+                                <td class="py-2"><input required type="date" id="tanggal_lahir" name="tanggal_lahir" value="<?= $data['tanggal_lahir']?>" class="bg-zinc-50 rounded-md shadow-sm w-full outline-none px-2 py-1 font-normal text-base font-poppins tracking-wide text-zinc-700"></td>
+                            </tr>
+                        </table>
+                        <div class="w-full mt-4 flex gap-3 justify-center">
+                            <button type="submit" class="py-2 px-5 bg-color4 rounded-md shadow-sm font-semibold text-sm font-poppins tracking-wider text-zinc-50 hover:bg-orange-600 duration-150">Update</button>
+                            <a href="dashboard.php" class="py-2 px-5 bg-zinc-600 rounded-md shadow-sm font-semibold text-sm font-poppins tracking-wider text-zinc-50 hover:bg-zinc-700 duration-150">Batal</a>
+                        </div>
+                    </form>
                 </div>
-            </form>
+            </main>
         </div>
-    </main>
-    <footer class="w-full flex flex-col justify-center items-center gap-4 pt-10 pb-5 bg-color5 drop-shadow-shdw1">
+        <footer class="w-full flex flex-col justify-center items-center gap-4 pt-10 pb-5 bg-color5 drop-shadow-shdw1">
         <div class="flex gap-4">
             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#fafafa" class="bi bi-facebook" viewBox="0 0 16 16">
                 <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z" />
@@ -177,6 +179,7 @@
         <div>
             <p class="font-normal text-xs font-poppins tracking-wide text-zinc-50">Est. 2023 ©Dashboard</p>
         </div>
-    </footer>
+        </footer>
+    </div>
 </body>
 </html>
